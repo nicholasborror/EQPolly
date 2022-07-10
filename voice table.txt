@@ -1,0 +1,35 @@
+1	Human	Joey	Joanna
+2	Barbarian	Hans	Vicki
+3	Erudite	Geraint	Raveena
+4	Wood Elf	Russell	Aditi
+5	High Elf	Matthew	Salli
+6	Dark Elf	Russell	Nicole
+7	Half Elf	Joey	Mia
+8	Dwarf	Brian	Amy
+9	Troll	Enrique	Kimberly
+10	Ogre	Mads	Zhiyu
+11	Halfling	Justin	Emma
+12	Gnome	Justin	Ivy
+26	Froglok	Mathieu	Celine
+27	Froglok	Mathieu	Celine
+67	Human	Joey	Joanna
+71	Human	Joey	Joanna
+77	Dark Elf	Russell	Nicole
+78	Erudite	Geraint	Raveena
+81	Halfling	Justin	Emma
+90	Barbarian	Hans	Vicki
+92	Troll	Enrique	Kimberly
+93	Ogre	Mads	Zhiyu
+94	Dwarf	Brian	Amy
+128	Iksar	Giorgio	Bianca
+130	Vah Shir	Miguel	Kendra
+139	Iksar	Giorgio	Bianca
+238	Vah Shir	Miguel	Kendra
+330	Froglok	Mathieu	Celine
+331	Troll	Enrique	Kimberly
+332	Troll	Enrique	Kimberly
+333	Troll	Enrique	Kimberly
+522	Drakkin	Takumi	Mizuki
+566	Human	Joey	Joanna
+624	Ogre NPC	Mads	Zhiyu
+678	Erudite	Geraint	Raveena
