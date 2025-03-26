@@ -1,4 +1,6 @@
 # EQPolly
+2025/03/26 With AI models being available, there are much better ways to accomplish voiceovers in Everquest. I am leaving this repo up only for nostalbia purposes.
+
 Add voiceovers to NPC's in Everquest using AWS's Polly system.  See ExampleVideo.mp4 for a preview.
 
 This python script uses the free tier of Amazon's Polly TTS (Text To Speech) system to parse the logs of Everquest NPC interactions and play an output as they speak.  Each gender and race have been given a specific Amazon Polly voice as shown in the file voice_table.txt.  
