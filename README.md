@@ -1,69 +1,89 @@
 # EQPolly
-2025/03/26 With AI models being available, there are much better ways to accomplish voiceovers in Everquest. I am leaving this repo up only for nostalbia purposes.
 
-Add voiceovers to NPC's in Everquest using AWS's Polly system.  See ExampleVideo.mp4 for a preview.
+**2025/03/26**  
+With modern AI voice models available, there are now better ways to handle voiceovers in EverQuest. This repo is being kept online for nostalgia purposes only.
 
-This python script uses the free tier of Amazon's Polly TTS (Text To Speech) system to parse the logs of Everquest NPC interactions and play an output as they speak.  Each gender and race have been given a specific Amazon Polly voice as shown in the file voice_table.txt.  
+## Overview
 
-Disclaimer:  This was a proof of concept, trial by doing project, and my first time really working with AWS, so I am sure there are many improvements that can be made.  I stopped working to improve the script once it was working reliably.  I am sure there are ways to improve performance.
+EQPolly adds voiceovers to NPCs in EverQuest using Amazon's Polly TTS system.  
+Check out `ExampleVideo.mp4` for a demo.
 
-Requirements:
+This Python script uses Amazon Polly (free tier) to parse EverQuest NPC interaction logs and play generated speech. Each NPC race and gender is assigned a Polly voice defined in `eqpollyvoices.csv`.
 
-Only tested on Windows Python 3.10
+> **Disclaimer:**  
+> This was a proof-of-concept and my first real experience with AWS. The code works but isn't optimized.
 
-pipwin (used to install pyaudio precompiled binaries)
+---
 
-pyaudio
+## Requirements
 
-pygamer
+- Windows with Python 3.10  
+- AWS account (free tier is sufficient)
 
-boto3
+Python packages:
+- `pipwin` (used to install precompiled `pyaudio`)
+- `pyaudio`
+- `pygamer`
+- `boto3`
 
-AWS account (free tier works just fine)
+---
 
+## Setup
 
-Setup:
+### 1. Install Dependencies
 
-Copy the EQPOLLY folder to C:\EQPOLLY or wherever you want it.
+```bash
+pip install boto3 pygamer pipwin
+pipwin install pyaudio
+```
 
-Setup an AWS account and log in.
+### 2. AWS Setup
 
-Go to the IAM service and create an addional user (e.g. polly_user).  
+1. Create an AWS account and log in.
+2. Go to **IAM**:
+   - Create a user (e.g., `polly_user`)
+   - Create a group (e.g., `polly_group`)
+   - Assign the `AmazonPollyFullAccess` permission to the group
+   - Add `polly_user` to the group
+3. Under **polly_user → Security Credentials**, create an **Access Key**
+4. Add credentials to `%USERPROFILE%\.aws\credentials`:
 
-Create a new user group (e.g. polly_group) and then give it the permission "AmazonPollyFullAccess".
-
-Edit the polly_user and add it to the group polly_group.  Now the user polly_user can use the polly service.
-
-You will need security credentials for the script to access your AWS account.  Under the properties of polly_user, select the security credentials tab and create an access key.  
-
-Create a a folder named .aws in %userprofile%
-Create a file in %userprofile%\.aws\credentials with your access key information in this format:
-
+```
 [default]
+aws_access_key_id = YOUR_ACCESS_KEY
+aws_secret_access_key = YOUR_SECRET_KEY
+```
 
-aws_access_key_id = XXXXXXX
+---
 
-aws_secret_access_key = YYYYYYYYYYYYYYY
+### 3. EverQuest Logging
 
+- Make sure logging is enabled in-game:
 
+```
+/log on
+```
 
-Install the prerequesites:
+- Locate the log file:  
+  `EverQuest\Logs\eqlog_<character>_<server>.txt`
 
-pip install boto3, pygamer, pipwin
+---
 
-pipwin install pyaudio (at the time of script creation, pyaudio wasn't in the repositories for Python 3.10, so I used precompiled binaries using pipwin)
+### 4. Running the Script
 
+```bash
+python C:\EQPOLLY\eqpolly.py C:\EQPOLLY\eqpollyvoices.csv C:\GAMES\EVERQUEST\LOGS\eqlog_user_agnarr.txt
+```
 
-Log into Everquest and make sure logging is turned on by using the command /log on
+As NPCs speak in-game, the script will play a voiceover based on their race/gender.
 
-Go into your Everquest folder, and under the logs folder, you should see a file named eqlog_yourcharactername_servername.txt.  Make note of the path of this file, as you will need it to start the script.
+---
 
-Run Python %pathtoEQPolly.py% %pathtoeqpollyvoices.csv% %pathtoeqlog_yourcharactername_servername.txt%
+## Customization
 
-For example--
+- To update or add new NPC voices, edit `eqpollyvoices.csv`.
+- Over **14,800 NPCs** currently have predefined voices.
 
-python C:\EQPOLLY\eqpolly.py C:\GAMES\EVERQUEST\LOGS\eqlog_user_agnarr.txt C:\EQPOLLY\eqpollyvoices.csv
+---
 
-Go to a merchant or hail an NPC that say's text, and you will hear a voiceover for their text, based on their gender and race.  If you want to make any changes to the voices used for a particular NPC, or if want to add a NPC that isn't already defined, edit file eqpollyvoices.csv and add the appropriate fields.  So far, over 14800 NPC's have been designated a voice based on their race and gender.  
-
-
+Enjoy the nostalgia!
